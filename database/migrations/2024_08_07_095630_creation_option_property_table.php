@@ -12,10 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('option_property', function (Blueprint $table) {
-         $table->foreignIdFor(\App\Models\Property::class)->constrained()->cascadeOnDelete();
-         $table->foreignIdFor(\App\Models\Option::class)->constrained()->cascadeOnDelete();
-         $table->primary(['property_id', 'option_id']);
+            $table->id();
+            $table->foreignId('property_id')->constrained()->onDelete('cascade');
+            $table->foreignId('option_id')->constrained()->onDelete('cascade');
+            $table->timestamps();
         });
+        
     }
 
     /**

@@ -39,19 +39,20 @@ class PropertyController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(PropertyRequest $request): RedirectResponse
-    {
-        // Créer une nouvelle propriété avec les données validées
-        $property = Property::create($request->validated());
+{
+
+
+    // Créer une nouvelle propriété avec les données validées
+    $property = Property::create($request->validated());
+
+    $property->options()->sync($request->input('options'));
+
+
+    return Redirect::route('properties.index')
+        ->with('success', 'Property created successfully.');
+}
+
     
-        // Associer les options si présentes
-        if ($request->has('options')) {
-            $property->options()->sync($request->input('options'));
-        }
-    
-        // Redirection avec un message de succès
-        return Redirect::route('properties.index')
-            ->with('success', 'Property created successfully.');
-    }
     
 
     /**
@@ -69,21 +70,23 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        $allOptions = Option::all();
+        $allOptions = Option::pluck('name', 'id'); 
         return view('property.edit', compact('property', 'allOptions'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(PropertyRequest $request, Property $property): RedirectResponse
     {
-        $property->options()->sync($request->validated('options'));
+        $property->options()->sync($request->input('options'));
         $property->update($request->validated());
-
+    
         return Redirect::route('properties.index')
             ->with('success', 'Property updated successfully');
     }
+    
 
     public function destroy($id): RedirectResponse
     {

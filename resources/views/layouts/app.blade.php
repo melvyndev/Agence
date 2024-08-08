@@ -36,10 +36,12 @@
         </div>
 
         <script>
-            new TomSelect("select[multiple]",{
-	            persist: false,
-	            createOnBlur: true,
-	            create: true
+            new TomSelect("select[multiple]",{plugins: {
+                remove_button: {
+                    title: "Supprimer"
+                }
+            
+            }
             });
         </script>
     </body>

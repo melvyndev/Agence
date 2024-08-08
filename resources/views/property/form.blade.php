@@ -113,7 +113,7 @@
 <div>
     @component('components.select', [
         'label' => 'Option', 
-        'name' => 'option', 
+        'name' => 'options', 
         'value' => $property->options->pluck('id'), 
         'options' => $allOptions, // Passer les options ici
         'multiple' => true
