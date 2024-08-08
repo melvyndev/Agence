@@ -3,30 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
+/**
+ * Class Property
+ *
+ * @property $id
+ * @property $title
+ * @property $description
+ * @property $surface
+ * @property $rooms
+ * @property $bedrooms
+ * @property $floor
+ * @property $price
+ * @property $city
+ * @property $address
+ * @property $postal_code
+ * @property $sold
+ * @property $created_at
+ * @property $updated_at
+ *
+ * @package App
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class Property extends Model
 {
-    // Specify the table if it differs from the default pluralized name
-    protected $table = 'properties';
-
-    // Specify which attributes are mass assignable
-    protected $fillable = [
-        'title',
-        'surface',
-        'price',
-        'description',
-        'rooms',
-        'bedrooms',
-        'floor',
-        'city',
-        'address',
-        'postal_code',
-        'sold',
-    ];
-
-    // Optionally specify the attributes that should be cast to native types
-    protected $casts = [
-        'sold' => 'boolean',
-    ];
     
+    protected $perPage = 20;
+   
+    protected $fillable = [
+        'title', 'description', 'surface', 'rooms', 'bedrooms',
+        'floor', 'price', 'city', 'address', 'postal_code', 'sold'
+    ];
+
+    public function options(): BelongsToMany
+    {
+        return $this->belongsToMany(Option::class, 'option_property');
+    }
+
 }
