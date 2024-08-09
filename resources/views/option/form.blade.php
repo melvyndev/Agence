@@ -11,7 +11,8 @@
         'placeholder' => 'Nom de l\'option',
         'value' => old('name', $option->name),
     ])
-    @endcomponent  <div class="flex items-center justify-between">
+    @endcomponent  
+    <div class="flex items-center justify-between">
         {!! Form::submit($option->exists ? 'Modifier' : 'Enregistrer', [
             'class' => 'bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded',
         ]) !!}

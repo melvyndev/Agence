@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-
+use Illuminate\Support\Str;
 /**
  * Class Property
  *
@@ -41,4 +41,7 @@ class Property extends Model
         return $this->belongsToMany(Option::class, 'option_property');
     }
 
+    public function getSlug(): string{
+        return Str::slug($this->title);
+    }
 }

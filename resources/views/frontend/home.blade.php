@@ -1,96 +1,97 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('frontend.app')
+@section('content')
+    <div class="container mx-auto py-8">
+        <!-- Section À propos -->
+        <section id="about" class="py-12">
+            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">À propos de nous</h2>
+            <p class="text-gray-700 text-center mx-auto max-w-2xl">
+                Bienvenue chez IMMOBILI2, votre partenaire de confiance dans la recherche de propriétés d'exception. Nous
+                sommes spécialisés dans la vente et la location de biens immobiliers haut de gamme.
+            </p>
+        </section>
 
-    <title>Agence Immobilière</title>
+        <!-- Section Propriétés en vedette -->
+        <section id="featured-properties" class="py-12 bg-gray-100">
+            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Propriétés en vedette</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Exemple de carte de propriété -->
+                @foreach ($properties as $property)
+                    @include('frontend.components.card', ['property' => $property])
+                @endforeach
+                <!-- Répéter pour plus de propriétés -->
+            </div>
+        </section>
 
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+        <!-- Section Services -->
+        <section id="services" class="py-12">
+            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Nos Services</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                <div class="p-4">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-orange-600" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 12v7m-6-6l6-6m6 6-6-6m4 6h4m-4 0v7m0-7l4 4m-6 4h4"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold">Vente de Propriétés</h3>
+                    <p class="text-gray-600">Nous vous aidons à vendre vos biens rapidement et au meilleur prix.</p>
+                </div>
+                <div class="p-4">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-orange-600" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 10v11a1 1 0 001 1h16a1 1 0 001-1V10m-5 10v-6h4l-10-9-10 9h4v6m5-7h4v7h-4v-7z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold">Location de Biens</h3>
+                    <p class="text-gray-600">Trouvez votre prochaine maison avec notre sélection de locations.</p>
+                </div>
+                <div class="p-4">
+                    <svg class="w-12 h-12 mx-auto mb-4 text-orange-600" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 10V3L3 10h10zM13 21l10-8h-4v-2a2 2 0 00-2-2h-4v7h4v3l-4 2z"></path>
+                    </svg>
+                    <h3 class="text-xl font-bold">Conseil en Investissement</h3>
+                    <p class="text-gray-600">Recevez des conseils d'experts pour vos investissements immobiliers.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Styles -->
-    <style>
-        /* TailwindCSS base styles */
-        *, ::after, ::before {
-            box-sizing: border-box;
-            border-width: 0;
-            border-style: solid;
-            border-color: #e5e7eb;
-        }
-        ::after, ::before {
-            --tw-content: '';
-        }
-        html {
-            line-height: 1.5;
-            -webkit-text-size-adjust: 100%;
-            -moz-tab-size: 4;
-            tab-size: 4;
-            font-family: Figtree, sans-serif;
-            font-feature-settings: normal;
-        }
-        body {
-            margin: 0;
-            line-height: inherit;
-            background-color: #f8f9fa; /* Light gray background */
-            color: #333; /* Dark text color */
-        }
-        /* Custom styles */
-        .header {
-            background-color: #ff7043; /* Orange background */
-            color: white;
-            padding: 1rem 2rem;
-            text-align: center;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            font-weight: 600;
-        }
-        .header p {
-            margin: 0.5rem 0 0;
-            font-size: 1.25rem;
-        }
-        .content {
-            padding: 2rem 1.5rem;
-            text-align: center;
-        }
-        .content h2 {
-            font-size: 2rem;
-            color: #ff7043; /* Orange text */
-            margin-bottom: 1rem;
-        }
-        .content p {
-            font-size: 1.125rem;
-            color: #666;
-        }
-        .cta-button {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            font-size: 1rem;
-            color: white;
-            background-color: #ff7043; /* Orange background */
-            border: none;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #e64a19; /* Darker orange on hover */
-        }
-    </style>
-</head>
-<body class="antialiased">
-    <div class="header">
-        <h1>Bienvenue chez Notre Agence Immobilière</h1>
-        <p>Trouvez la maison de vos rêves avec nous</p>
+        <!-- Section Témoignages -->
+        <section id="testimonials" class="py-12 bg-gray-100">
+            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Témoignages</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Exemple de témoignage -->
+                <div class="bg-white shadow-md rounded-lg p-4">
+                    <p class="text-gray-700 mb-4">"IMMOBILI2 a trouvé la maison de mes rêves en un temps record. Je
+                        recommande fortement leurs services."</p>
+                    <p class="text-orange-600 font-bold">Jean Dupont</p>
+                </div>
+                <!-- Répéter pour plus de témoignages -->
+            </div>
+        </section>
+
+        <!-- Section Contact -->
+        <section id="contact" class="py-12">
+            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Contactez-nous</h2>
+            <form action="#" method="POST" class="max-w-xl mx-auto">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 font-bold mb-2">Nom</label>
+                    <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
+                    <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg"
+                        required>
+                </div>
+                <div class="mb-4">
+                    <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
+                    <textarea id="message" name="message" class="w-full p-3 border border-gray-300 rounded-lg" rows="5" required></textarea>
+                </div>
+                <button type="submit"
+                    class="w-full bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700">Envoyer</button>
+            </form>
+        </section>
     </div>
-    <div class="content">
-        <h2>Découvrez Nos Dernières Offres</h2>
-        <p>Explorez une large gamme de propriétés adaptées à tous les goûts et budgets.</p>
-        <a href="#" class="cta-button">Voir les Offres</a>
-    </div>
-</body>
-</html>
+
+@endsection

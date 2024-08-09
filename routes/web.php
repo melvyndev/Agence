@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\OptionController;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Frontend\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,22 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Route vers la page des propriétés
+Route::get('/proprietes',[\App\Http\Controllers\Frontend\PropertyController::class, 'index'])->name('property.index');
+Route::get('/proprietes/{slug}-{property}',[\App\Http\Controllers\Frontend\PropertyController::class, 'show'])
+->name('property.show')->where(['slug' => '[a-z0-9-]+', 'property' => '[0-9]+']);
+
+// Route vers la page des services
+Route::get('/services', function () {
+    return view('services');
+})->name('services');
+
+// Route vers la page de contact
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact');
 
 
 Route::get('/dashboard', function () {
