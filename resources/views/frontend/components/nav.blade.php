@@ -17,7 +17,7 @@
         <!-- Liens de navigation -->
         <div id="menu" class="hidden md:flex space-x-6">
             <a href="{{ route('home') }}" class="text-gray-600 hover:text-orange-600">Accueil</a>
-            <a href="{{ route('property.index') }}" class="text-gray-600 hover:text-orange-600">Propriétés</a>
+            <a href="{{ route('frontend.property.index') }}" class="text-gray-600 hover:text-orange-600">Propriétés</a>
             <a href="{{ route('services') }}" class="text-gray-600 hover:text-orange-600">Services</a>
             <a href="{{ route('contact') }}" class="text-gray-600 hover:text-orange-600">Contact</a>
         </div>
@@ -26,7 +26,7 @@
     <!-- Menu mobile -->
     <div id="mobile-menu" class="hidden md:hidden">
         <a href="{{ route('home') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Accueil</a>
-        <a href="{{ route('properties.index') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Propriétés</a>
+        <a href="{{ route('frontend.property.index') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Propriétés</a>
         <a href="{{ route('services') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Services</a>
         <a href="{{ route('contact') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Contact</a>
     </div>

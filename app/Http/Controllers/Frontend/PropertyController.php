@@ -43,7 +43,10 @@ class PropertyController extends Controller
      */
     public function show(string $slug,Property $property): View
     {
-        $property = Property::where('slug', $slug)->with('propertyImages')->firstOrFail();
+        if($slug === $property->getSlug()){
+            
+        }
+        $property = Property::where('slug', $slug)->firstOrFail();
         return view('frontend.property.show', compact('property'));
     }
 

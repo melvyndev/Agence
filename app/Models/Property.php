@@ -44,4 +44,16 @@ class Property extends Model
     public function getSlug(): string{
         return Str::slug($this->title);
     }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($property) {
+            $property->slug = Str::slug($property->title);
+        });
+
+        static::updating(function ($property) {
+            $property->slug = Str::slug($property->title);
+        });
+    }
 }

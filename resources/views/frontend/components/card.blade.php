@@ -8,6 +8,6 @@
 
         <p class="text-gray-600">Prix : {{ $property->price }} €</p>
 
-        <a href="{{ route('property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}" class="text-orange-600 hover:underline">Voir plus</a>
+        <a href="{{ route('frontend.property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}" class="text-orange-600 hover:underline">Voir plus</a>
     </div>
 </div>

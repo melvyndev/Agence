@@ -20,9 +20,11 @@ use App\Http\Controllers\Frontend\HomeController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route vers la page des propriétés
-Route::get('/proprietes',[\App\Http\Controllers\Frontend\PropertyController::class, 'index'])->name('property.index');
-Route::get('/proprietes/{slug}-{property}',[\App\Http\Controllers\Frontend\PropertyController::class, 'show'])
-->name('property.show')->where(['slug' => '[a-z0-9-]+', 'property' => '[0-9]+']);
+Route::get('/proprietes',[\App\Http\Controllers\Frontend\PropertyController::class, 'index'])->name('frontend.property.index');
+Route::get('/proprietes/{slug}-{property}', [\App\Http\Controllers\Frontend\PropertyController::class, 'show'])
+    ->name('frontend.property.show')
+    ->where(['slug' => '[a-z0-9-]+', 'property' => '[0-9]+']);
+
 
 // Route vers la page des services
 Route::get('/services', function () {
