@@ -2,10 +2,17 @@
     'route' => $property->exists ? ['properties.update', $property] : 'properties.store',
     'method' => $property->exists ? 'PUT' : 'POST',
     'class' => 'bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4',
+    'files' => true // Important pour permettre l'upload de fichiers
+
 ]) !!}
 @csrf
 
 <div class="flex flex-wrap gap-4 mb-4">
+
+    <div>
+        <input type="file" name="image">
+
+    </div>
     @component('components.custom-input', [
         'label' => 'Titre',
         'name' => 'title',

@@ -24,6 +24,7 @@ class PropertyRequest extends FormRequest
             'postal_code' => ['required', 'digits:5'],
             'sold' => 'boolean', 
             'options' =>['array','exists:options,id','required'],
+            'image' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
     }
 

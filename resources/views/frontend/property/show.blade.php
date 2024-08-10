@@ -6,7 +6,10 @@
         <!-- Section de gauche : Détails de la propriété -->
         <div class="md:col-span-2">
             <h1 class="text-3xl font-bold text-orange-600 py-2">{{ $property->title }}</h1>
-            <img src="https://via.placeholder.com/640x480" alt="{{ $property->title }}" class="w-full h-64 object-cover">
+            @if($property->image)
+<img src="{{ $property->imageUrl() }}" alt="{{ $property->title }}"class="w-full h-64 object-cover">
+
+@endif
             <p class="text-gray-600 mt-2">{{ $property->city }}, {{ $property->address }} - {{ $property->postal_code }}</p>
 
             <div class="mt-6 space-y-4">

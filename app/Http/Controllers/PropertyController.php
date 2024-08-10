@@ -9,6 +9,7 @@ use App\Http\Requests\PropertyRequest;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Option;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -31,28 +32,33 @@ class PropertyController extends Controller
         $property = new Property();
         $allOptions = Option::pluck('name', 'id');
 
-        return view('property.create', compact('property','allOptions'));
-
+        return view('property.create', compact('property', 'allOptions'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(PropertyRequest $request): RedirectResponse
-{
-
-
-    // Créer une nouvelle propriété avec les données validées
-    $property = Property::create($request->validated());
-
-    $property->options()->sync($request->input('options'));
-
-
-    return Redirect::route('properties.index')
-        ->with('success', 'Property created successfully.');
-}
-
+    {
     
+    
+        // Créer une nouvelle propriété avec les données validées
+        $property = Property::create($request->validated());
+    
+        // Synchronisation des options
+        $property->options()->sync($request->input('options'));
+    
+        // Vérification si une nouvelle image a été téléchargée
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagePath = $image->store('property', 'public'); // Enregistre dans storage/app/public/property
+            $property->image = $imagePath; // Enregistre uniquement le chemin relatif dans la base de données
+            $property->save(); // Assurez-vous de sauvegarder l'objet Property après modification
+        }
+    
+        return Redirect::route('properties.index')
+            ->with('success', 'Property created successfully.');
+    }
     
 
     /**
@@ -60,7 +66,7 @@ class PropertyController extends Controller
      */
     public function show($id): View
     {
-        $property = Property::find($id);
+        $property = Property::findOrFail($id); // Utiliser findOrFail pour gérer les erreurs de non-trouvabilité
 
         return view('property.show', compact('property'));
     }
@@ -68,32 +74,57 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Property $property)
+    public function edit(Property $property): View
     {
         $allOptions = Option::pluck('name', 'id'); 
         return view('property.edit', compact('property', 'allOptions'));
     }
-    
 
     /**
      * Update the specified resource in storage.
      */
     public function update(PropertyRequest $request, Property $property): RedirectResponse
     {
+       
+    
+        // Synchronisation des options
         $property->options()->sync($request->input('options'));
-        $property->update($request->validated());
+    
+        // Gestion de l'image si une nouvelle image est téléchargée
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($property->image) {
+                Storage::disk('public')->delete($property->image);
+            }
+    
+            $file = $request->file('image');
+            $path = $file->store('property', 'public'); // Enregistre le nouveau fichier
+            $property->image = $path; // Met à jour le chemin de l'image
+        }
+    
+        // Mettre à jour les autres champs
+        $property->update($request->except('image')); // Exclure l'image de la mise à jour
     
         return Redirect::route('properties.index')
             ->with('success', 'Property updated successfully');
     }
     
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy($id): RedirectResponse
     {
-        Property::find($id)->delete();
+        $property = Property::findOrFail($id);
+
+        // Supprimer l'image associée si elle existe
+        if ($property->image) {
+            Storage::disk('public')->delete($property->image);
+        }
+
+        $property->delete();
 
         return Redirect::route('properties.index')
             ->with('success', 'Property deleted successfully');
     }
-    
 }

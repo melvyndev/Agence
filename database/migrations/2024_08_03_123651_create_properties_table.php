@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('image')->nullable();
             $table->string('slug')->unique(); // Adjust 'after' as needed
             $table->longText('description');
             $table->integer('surface');

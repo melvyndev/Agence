@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
+
+
 /**
  * Class Property
  *
@@ -33,7 +37,7 @@ class Property extends Model
    
     protected $fillable = [
         'title', 'description', 'surface', 'rooms', 'bedrooms',
-        'floor', 'price', 'city', 'address', 'postal_code', 'sold'
+        'floor', 'price', 'city', 'address', 'postal_code', 'sold','image'
     ];
 
     public function options(): BelongsToMany
@@ -56,4 +60,11 @@ class Property extends Model
             $property->slug = Str::slug($property->title);
         });
     }
+
+    public function imageUrl()
+    {
+        return $this->image ? Storage::disk('public')->url($this->image) : null;
+    }
+    
+    
 }

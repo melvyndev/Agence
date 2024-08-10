@@ -1,5 +1,5 @@
 <div class="bg-white shadow-md rounded-lg overflow-hidden">
-    <img src="https://via.placeholder.com/640x480" alt="{{ $property->title }}" class="w-full h-48 object-cover">
+    <img src="{{$property->imageUrl()}}" alt="{{ $property->title }}" class="w-full h-48 object-cover">
     <div class="p-4">
         <h3 class="text-xl font-bold">{{ $property->title }}</h3>
         <p class="text-gray-600">{{ $property->description }}</p>
