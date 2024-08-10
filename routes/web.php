@@ -24,6 +24,8 @@ Route::get('/proprietes',[\App\Http\Controllers\Frontend\PropertyController::cla
 Route::get('/proprietes/{slug}-{property}', [\App\Http\Controllers\Frontend\PropertyController::class, 'show'])
     ->name('frontend.property.show')
     ->where(['slug' => '[a-z0-9-]+', 'property' => '[0-9]+']);
+    Route::post('/biens/{property}/contact',[\App\Http\Controllers\Frontend\PropertyController::class, 'contact'])
+    ->name('frontend.property.contact');
 
 
 // Route vers la page des services

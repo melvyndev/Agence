@@ -95,4 +95,5 @@ class PropertyController extends Controller
         return Redirect::route('properties.index')
             ->with('success', 'Property deleted successfully');
     }
+    
 }

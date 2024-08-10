@@ -28,6 +28,7 @@
                     </div>
                 </header>
             @endif
+            @include('components.flash')
 
             <!-- Page Content -->
             <main>

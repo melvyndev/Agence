@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Option;
 use App\Http\Requests\SearchPropertiesRequest;
+use App\Http\Requests\PropertyContactRequest;
+use App\Mail\PropertyContactMail;
+use Illuminate\Support\Facades\Mail;
+
 class PropertyController extends Controller
 {
     /**
@@ -18,7 +22,7 @@ class PropertyController extends Controller
     public function index(SearchPropertiesRequest $request): View
     {
 
-        $query = Property::query();
+        $query = Property::query()->orderBy('created_at','desc');
         if($request->validated('price')){
             $query = $query->where('price','<=', $request->input('price'));
         }
@@ -49,6 +53,15 @@ class PropertyController extends Controller
         $property = Property::where('slug', $slug)->firstOrFail();
         return view('frontend.property.show', compact('property'));
     }
+
+    
+    public function contact(Property $property, PropertyContactRequest $request): RedirectResponse
+    {
+        Mail::send(new PropertyContactMail($property, $request->validated()));
+    
+        return back()->with('success', 'Votre message a bien été envoyé');
+    }
+    
 
 
 }
