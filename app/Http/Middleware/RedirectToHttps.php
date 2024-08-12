@@ -9,7 +9,9 @@ class RedirectToHttps
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->secure()) {
+        // Vérifiez si la requête n'est pas déjà sécurisée
+        if (!$request->secure() && !$request->is('favicon.ico') && !$request->is('js/*') && !$request->is('css/*')) {
+            // Redirection vers HTTPS
             return redirect()->secure($request->getRequestUri());
         }
 
