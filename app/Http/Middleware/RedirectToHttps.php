@@ -16,6 +16,7 @@ class RedirectToHttps
      */
     public function handle(Request $request, Closure $next)
     {
+        // Ignore favicon.ico to prevent infinite loop
         if (!$request->secure() && !$request->is('favicon.ico')) {
             return redirect()->secure($request->getRequestUri());
         }
