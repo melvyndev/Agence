@@ -4,17 +4,17 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RedirectToHttps
 {
-    public function handle(Request $request, Closure $next)
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     */
+    public function handle(Request $request, Closure $next): Response
     {
-        // Vérifiez si la requête n'est pas déjà sécurisée
-        if (!$request->secure() && !$request->is('favicon.ico') && !$request->is('js/*') && !$request->is('css/*')) {
-            // Redirection vers HTTPS
-            return redirect()->secure($request->getRequestUri());
-        }
-
         return $next($request);
     }
 }
