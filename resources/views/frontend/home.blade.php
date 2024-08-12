@@ -5,7 +5,8 @@
         <section id="about" class="py-12">
             <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">À propos de nous</h2>
             <p class="text-gray-700 text-center mx-auto max-w-2xl">
-                Bienvenue chez IMMOBILI2, votre partenaire de confiance dans la recherche de propriétés d'exception. Nous
+                Bienvenue chez <span class="text-orange-600">melvyn-dev-immobilier</span>, votre partenaire de confiance dans
+                la recherche de propriétés d'exception. Nous
                 sommes spécialisés dans la vente et la location de biens immobiliers haut de gamme.
             </p>
         </section>
@@ -57,41 +58,10 @@
         </section>
 
         <!-- Section Témoignages -->
-        <section id="testimonials" class="py-12 bg-gray-100">
-            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Témoignages</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Exemple de témoignage -->
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <p class="text-gray-700 mb-4">"IMMOBILI2 a trouvé la maison de mes rêves en un temps record. Je
-                        recommande fortement leurs services."</p>
-                    <p class="text-orange-600 font-bold">Jean Dupont</p>
-                </div>
-                <!-- Répéter pour plus de témoignages -->
-            </div>
-        </section>
 
-        <!-- Section Contact -->
-        <section id="contact" class="py-12">
-            <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Contactez-nous</h2>
-            <form action="#" method="POST" class="max-w-xl mx-auto">
-                <div class="mb-4">
-                    <label for="name" class="block text-gray-700 font-bold mb-2">Nom</label>
-                    <input type="text" id="name" name="name" class="w-full p-3 border border-gray-300 rounded-lg"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label for="email" class="block text-gray-700 font-bold mb-2">Email</label>
-                    <input type="email" id="email" name="email" class="w-full p-3 border border-gray-300 rounded-lg"
-                        required>
-                </div>
-                <div class="mb-4">
-                    <label for="message" class="block text-gray-700 font-bold mb-2">Message</label>
-                    <textarea id="message" name="message" class="w-full p-3 border border-gray-300 rounded-lg" rows="5" required></textarea>
-                </div>
-                <button type="submit"
-                    class="w-full bg-orange-600 text-white font-bold py-3 rounded-lg hover:bg-orange-700">Envoyer</button>
-            </form>
-        </section>
+        @include('frontend.components.testimony')
+
+
+
     </div>
-
 @endsection

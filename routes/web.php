@@ -30,13 +30,11 @@ Route::get('/proprietes/{slug}-{property}', [\App\Http\Controllers\Frontend\Prop
 
 // Route vers la page des services
 Route::get('/services', function () {
-    return view('services');
+    return view('frontend.services');
+
 })->name('services');
 
-// Route vers la page de contact
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
+
 
 
 Route::get('/dashboard', function () {

@@ -21,13 +21,21 @@ class PropertyContactRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        $rules = [
             'firstname'=>['required', 'string', 'min:2'],
             'lastname'=>['required', 'string', 'min:2'],
             'phone'=>['required', 'string', 'min:10'],
             'email'=>['required', 'email', 'min:10'],
             'message'=>['required', 'string', 'min:4'],
+            'g-recaptcha-response' => 'required|captcha',
+
 
         ];
+
+        if (app()->environment('production')) {
+            $rules['g-recaptcha-response'] = 'required|captcha';
+        }
+        return $rules;
+
     }
 }

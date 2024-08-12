@@ -2,7 +2,7 @@
     <div class="container mx-auto p-4 flex justify-between items-center">
         <!-- Logo / Titre -->
         <div class="text-orange-600 text-2xl font-bold">
-            IMMOBILI2
+            melvyn-dev-immobilier
         </div>
 
         <!-- Bouton pour menu mobile -->
@@ -19,7 +19,6 @@
             <a href="{{ route('home') }}" class="text-gray-600 hover:text-orange-600">Accueil</a>
             <a href="{{ route('frontend.property.index') }}" class="text-gray-600 hover:text-orange-600">Propriétés</a>
             <a href="{{ route('services') }}" class="text-gray-600 hover:text-orange-600">Services</a>
-            <a href="{{ route('contact') }}" class="text-gray-600 hover:text-orange-600">Contact</a>
         </div>
     </div>
 
@@ -28,7 +27,6 @@
         <a href="{{ route('home') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Accueil</a>
         <a href="{{ route('frontend.property.index') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Propriétés</a>
         <a href="{{ route('services') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Services</a>
-        <a href="{{ route('contact') }}" class="block text-gray-600 hover:text-orange-600 py-2 px-4">Contact</a>
     </div>
 </nav>
 

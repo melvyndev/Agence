@@ -10,9 +10,17 @@
 <div class="flex flex-wrap gap-4 mb-4">
 
     <div>
-        <input type="file" name="image">
+        <input type="file" id="image" name="image" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50" accept="image/*" onchange="previewImage(event)">
 
+        @if($property->exists && $property->image) 
+            <!-- Si une image existe pour la propriété, l'afficher -->
+            <img id="preview" src="{{$property->imageUrl()}}" alt="Image Preview" class="mt-4 w-32 h-32 object-cover rounded-md">
+        @else
+            <!-- Si aucune image n'est disponible, masquer la prévisualisation -->
+            <img id="preview" src="#" alt="Image Preview" class="mt-4 hidden w-32 h-32 object-cover rounded-md">
+        @endif
     </div>
+
     @component('components.custom-input', [
         'label' => 'Titre',
         'name' => 'title',
@@ -137,3 +145,20 @@
 </div>
 
 {!! Form::close() !!}
+
+<script>
+    function previewImage(event) {
+        const input = event.target;
+        const reader = new FileReader();
+    
+        reader.onload = function() {
+            const preview = document.getElementById('preview');
+            preview.src = reader.result;
+            preview.classList.remove('hidden'); // Rendre l'image visible
+        };
+    
+        if (input.files && input.files[0]) {
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    </script>

@@ -10,15 +10,44 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
- 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 
+    <!-- Slick CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
     @include('frontend.components.nav')
 
-   @yield('content')
+    @yield('content')
 
     @include('frontend.components.footer')
+
+    <!-- Slick JS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('.testimonial-slider').slick({
+                infinite: true,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: true,
+                arrows: true,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                nextArrow: '<div class="slick-next">›</div>',
+                prevArrow: '<div class="slick-prev">‹</div>',
+            });
+        });
+
+        var onloadCallback = function() {};
+    </script>
+
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

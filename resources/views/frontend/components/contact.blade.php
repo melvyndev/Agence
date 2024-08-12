@@ -48,6 +48,9 @@
         ]) !!}
     </div>
 
+    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+
+
     {!! Form::submit('Envoyer', [
         'class' => 'w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-md hover:bg-orange-700',
     ]) !!}

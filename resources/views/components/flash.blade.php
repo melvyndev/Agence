@@ -14,3 +14,8 @@
     </ul>
 </div>   
 @endif
+@if ($errors->has('g-recaptcha-response'))
+    <div class="alert alert-danger">
+        {{ $errors->first('g-recaptcha-response') }}
+    </div>
+@endif
