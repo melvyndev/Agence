@@ -4,23 +4,17 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RedirectToHttps
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
+     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next)
+    public function handle(Request $request, Closure $next): Response
     {
-        // Ignore favicon.ico to prevent infinite loop
-        if (!$request->secure() && !$request->is('favicon.ico')) {
-            return redirect()->secure($request->getRequestUri());
-        }
-
         return $next($request);
     }
 }
