@@ -38,4 +38,11 @@ class PropertyContactRequest extends FormRequest
         return $rules;
 
     }
+    
+    public function messages(): array
+    {
+        return [
+            'g-recaptcha-response.required' => 'Verifie que vous ne soyez pas un robot',   
+        ];
+    }   
 }
