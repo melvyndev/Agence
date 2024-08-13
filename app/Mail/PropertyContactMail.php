@@ -33,7 +33,7 @@ class PropertyContactMail extends Mailable
     {
         return new Envelope(
             to: 'test@example.com',
-            subject: 'Property Contact Mail',
+            subject: 'Propriéte Contact : '.$this->property->title,
         );
     }
 
