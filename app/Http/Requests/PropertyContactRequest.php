@@ -27,22 +27,13 @@ class PropertyContactRequest extends FormRequest
             'phone'=>['required', 'string', 'min:10'],
             'email'=>['required', 'email', 'min:10'],
             'message'=>['required', 'string', 'min:4'],
-            'g-recaptcha-response' => 'required|captcha',
 
 
         ];
 
-        if (app()->environment('production')) {
-            $rules['g-recaptcha-response'] = 'required|captcha';
-        }
+   
         return $rules;
 
     }
     
-    public function messages(): array
-    {
-        return [
-            'g-recaptcha-response.required' => 'La verification recaptcha est obligatoire',   
-        ];
-    }   
 }

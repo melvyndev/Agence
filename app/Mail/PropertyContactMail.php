@@ -32,7 +32,7 @@ class PropertyContactMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            to: 'y5sDy@example.com',
+            to: 'test@example.com',
             subject: 'Property Contact Mail',
         );
     }
