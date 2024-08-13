@@ -42,7 +42,7 @@ class PropertyContactRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'g-recaptcha-response.required' => 'Verifie que vous ne soyez pas un robot',   
+            'g-recaptcha-response.required' => 'La verification recaptcha est obligatoire',   
         ];
     }   
 }

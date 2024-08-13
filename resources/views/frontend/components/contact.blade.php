@@ -52,7 +52,8 @@
     
     <!-- reCAPTCHA -->
     <div class="mb-4">
-        <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+        <div class="g-recaptcha" data-sitekey="{{ config('no-captcha.sitekey') }}"></div>
+
     </div>
     
     <!-- Bouton d'envoi -->
