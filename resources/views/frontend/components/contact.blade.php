@@ -52,7 +52,7 @@
     
     <!-- reCAPTCHA -->
     <div class="mb-4">
-        <div class="g-recaptcha" data-sitekey="{{ config('no-captcha.sitekey') }}"></div>
+        <div class="g-recaptcha" data-sitekey="{{ config('captcha.sitekey') }}"></div>
 
     </div>
     
