@@ -6,7 +6,7 @@
 @csrf
 
     @component('components.custom-input', [
-        'label' => 'name',
+        'label' => 'Nom',
         'name' => 'name',
         'placeholder' => 'Nom de l\'option',
         'value' => old('name', $option->name),

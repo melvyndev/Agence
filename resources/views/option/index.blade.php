@@ -27,8 +27,6 @@
                                     <tr>
                                         <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">#</th>
                                         <th scope="col" class="py-3 pl-4 pr-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">Nom</th>
-
-
                                         <th scope="col" class="px-3 py-3 text-left text-xs font-semibold uppercase tracking-wide text-gray-500"></th>
                                     </tr>
                                     </thead>
@@ -38,14 +36,12 @@
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ ++$i }}</td>
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-semibold text-gray-900">{{ $option->name }}</td>
 
-
                                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                                                 <form action="{{ route('options.destroy', $option) }}" method="POST">
-                                                    <a href="{{ route('options.show', $option) }}" class="text-gray-600 font-bold hover:text-gray-900 mr-2">{{ __('Show') }}</a>
-                                                    <a href="{{ route('options.edit', $option) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Edit') }}</a>
+                                                    <a href="{{ route('options.edit', $option) }}" class="text-indigo-600 font-bold hover:text-indigo-900  mr-2">{{ __('Modifier') }}</a>
                                                     @csrf
                                                     @method('DELETE')
-                                                    <a href="{{ route('options.destroy', $option->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Are you sure to delete?') ? this.closest('form').submit() : false;">{{ __('Delete') }}</a>
+                                                    <a href="{{ route('options.destroy', $option->id) }}" class="text-red-600 font-bold hover:text-red-900" onclick="event.preventDefault(); confirm('Êtes-vous sûr de vouloir supprimer?') ? this.closest('form').submit() : false;">{{ __('Supprimer') }}</a>
                                                 </form>
                                             </td>
                                         </tr>

@@ -1,5 +1,8 @@
 @extends('frontend.app')
 @section('content')
+    <div>
+        <img src="{{ asset('images/header.png') }}" alt="header immobilier" class="w-full h-80 object-cover">
+    </div>
     <div class="container mx-auto py-8">
         <!-- Section À propos -->
         <section id="about" class="py-12">

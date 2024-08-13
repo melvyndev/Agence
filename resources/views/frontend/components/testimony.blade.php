@@ -1,9 +1,9 @@
-<section id="testimonials" class="py-12 bg-gray-100">
+<section id="testimonials" class="py-12 px-8 bg-gray-100">
     <h2 class="text-3xl font-bold text-center text-orange-600 mb-6">Témoignages</h2>
     <div class="testimonial-slider">
         <!-- Exemple de témoignage -->
         <div class="bg-white shadow-md rounded-lg p-4">
-            <p class="text-gray-700 mb-4">"IMMOBILI2 a trouvé la maison de mes rêves en un temps record. Je recommande fortement leurs services."</p>
+            <p class="text-gray-700 mb-4">"melvyn-dev-immobilier a trouvé la maison de mes rêves en un temps record. Je recommande fortement leurs services."</p>
             <p class="text-orange-600 font-bold">Jean Dupont</p>
         </div>
         <!-- Répétez ce bloc pour chaque témoignage -->

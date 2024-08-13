@@ -1,58 +1,63 @@
-<div class="bg-white shadow-lg rounded-lg p-6">
-    <h2 class="text-2xl font-bold text-orange-600 mb-4">Contactez-nous</h2>
+<div class="bg-white  rounded-lg ">
 
     @include('components.flash')
-    {!! Form::open(['route' => ['frontend.property.contact', $property], 'method' => 'post']) !!}
 
-    <div class="mb-4">
-        {!! Form::label('firstname', 'Prénom', ['class' => 'block text-gray-700']) !!}
-        {!! Form::text('firstname', 'Jean', [
-            'class' =>
-                'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
+    {!! Form::open(['route' => ['frontend.property.contact', $property], 'method' => 'post', 'class' => 'space-y-6']) !!}
+    
+    <!-- Prénom -->
+    <div>
+        {!! Form::label('firstname', 'Prénom', ['class' => 'block text-gray-700 font-semibold mb-2']) !!}
+        {!! Form::text('firstname', '', [
+            'class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
+            'placeholder' => 'Votre prénom',
+        ]) !!}
+    </div>
+    
+    <!-- Nom -->
+    <div>
+        {!! Form::label('lastname', 'Nom', ['class' => 'block text-gray-700 font-semibold mb-2']) !!}
+        {!! Form::text('lastname', '', [
+            'class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
             'placeholder' => 'Votre nom',
         ]) !!}
     </div>
-
-    <div class="mb-4">
-        {!! Form::label('lastname', 'Nom', ['class' => 'block text-gray-700']) !!}
-        {!! Form::text('lastname', 'Dupont', [
-            'class' =>
-                'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
-            'placeholder' => 'Votre nom',
+    
+    <!-- Téléphone -->
+    <div>
+        {!! Form::label('phone', 'Téléphone', ['class' => 'block text-gray-700 font-semibold mb-2']) !!}
+        {!! Form::text('phone', '', [
+            'class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
+            'placeholder' => 'Votre téléphone',
         ]) !!}
     </div>
-    <div class="mb-4">
-        {!! Form::label('phone', 'Téléphone', ['class' => 'block text-gray-700']) !!}
-        {!! Form::text('phone', '06 12 34 56 78', [
-            'class' =>
-                'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
-            'placeholder' => 'Votre nom',
-        ]) !!}
-    </div>
-    <div class="mb-4">
-        {!! Form::label('email', 'Email', ['class' => 'block text-gray-700']) !!}
+    
+    <!-- Email -->
+    <div>
+        {!! Form::label('email', 'Email', ['class' => 'block text-gray-700 font-semibold mb-2']) !!}
         {!! Form::email('email', null, [
-            'class' =>
-                'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
+            'class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
             'placeholder' => 'Votre email',
         ]) !!}
     </div>
-
-    <div class="mb-4">
-        {!! Form::label('message', 'Message', ['class' => 'block text-gray-700']) !!}
-        {!! Form::textarea('message', 'message', [
+    
+    <!-- Message -->
+    <div>
+        {!! Form::label('message', 'Message', ['class' => 'block text-gray-700 font-semibold mb-2']) !!}
+        {!! Form::textarea('message', '', [
             'rows' => 4,
-            'class' =>
-                'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
+            'class' => 'block w-full rounded-md border-gray-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-500 focus:ring-opacity-50',
             'placeholder' => 'Votre message',
         ]) !!}
     </div>
-
-    <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
-
-
+    
+    <!-- reCAPTCHA -->
+    <div class="mb-4">
+        <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>
+    </div>
+    
+    <!-- Bouton d'envoi -->
     {!! Form::submit('Envoyer', [
-        'class' => 'w-full bg-orange-600 text-white font-bold py-2 px-4 rounded-md hover:bg-orange-700',
+        'class' => 'w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-md hover:bg-orange-700 transition duration-300',
     ]) !!}
 
     {!! Form::close() !!}
