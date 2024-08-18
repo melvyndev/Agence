@@ -49,14 +49,8 @@
             'placeholder' => 'Votre message',
         ]) !!}
     </div>
+  
     
-    <!-- reCAPTCHA -->
-    <div class="mb-4">
-        <div class="g-recaptcha" data-sitekey="{{ config('captcha.sitekey') }}"></div>
-
-    </div>
-    
-    <!-- Bouton d'envoi -->
     {!! Form::submit('Envoyer', [
         'class' => 'w-full bg-orange-600 text-white font-bold py-3 px-4 rounded-md hover:bg-orange-700 transition duration-300',
     ]) !!}

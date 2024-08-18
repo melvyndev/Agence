@@ -63,7 +63,7 @@ class Property extends Model
 
     public function imageUrl()
     {
-        return $this->image ? Storage::disk('public')->url($this->image) : null;
+        return $this->image;
     }
     
     
