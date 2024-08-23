@@ -11,7 +11,7 @@ class HomeController extends Controller
     public function index()
     {
         // Corrected the syntax for pagination
-        $properties = Property::paginate(4);
+        $properties = Property::available(true)->paginate(4);
         return view('frontend.home', compact('properties'));
     }
 

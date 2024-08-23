@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Database\Eloquent\Builder;
 
 
 /**
@@ -66,5 +66,17 @@ class Property extends Model
         return $this->image;
     }
     
+
+    /**
+     * Scope a query to only include available properties.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param bool $available
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeAvailable(Builder $builder,bool $available = true): Builder
+    {
+        return $builder->where('sold',!$available);
+    } 
     
 }

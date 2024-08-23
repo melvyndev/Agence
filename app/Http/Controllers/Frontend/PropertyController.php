@@ -21,25 +21,37 @@ class PropertyController extends Controller
      */
     public function index(SearchPropertiesRequest $request): View
     {
-
-        $query = Property::query()->orderBy('created_at','desc');
-        if($request->validated('price')){
-            $query = $query->where('price','<=', $request->input('price'));
-        }
-        if($request->validated('surface')){
-            $query = $query->where('surface','>=', $request->input('surface'));
-        }
-        if($request->validated('rooms')){
-            $query = $query->where('rooms','>=', $request->input('rooms'));
-        }
-
-        if($request->validated('title')){
-            $query = $query->where('title','like',"%{$request->input('title')}%");
-        }
-
-
-        return view('frontend.property.index', ['properties'=> $query->paginate(16),'input'=>$request->validated()]);
+        // Créer une requête de base pour les propriétés
+        $query = Property::query()->orderBy('created_at', 'desc');
+    
+        // Appliquer les filtres basés sur les paramètres validés du request
+        $query->when($request->validated('price'), function ($q, $price) {
+            return $q->where('price', '<=', $price);
+        });
+    
+        $query->when($request->validated('surface'), function ($q, $surface) {
+            return $q->where('surface', '>=', $surface);
+        });
+    
+        $query->when($request->validated('rooms'), function ($q, $rooms) {
+            return $q->where('rooms', '>=', $rooms);
+        });
+    
+        $query->when($request->validated('title'), function ($q, $title) {
+            return $q->where('title', 'like', "%$title%");
+        });
+    
+        // Appliquer une portée (scope) si nécessaire, ici 'scopeAvailable'
+        $query->available(true);
+    
+        // Retourner la vue avec les propriétés paginées et les paramètres de recherche
+        return view('frontend.property.index', [
+            'properties' => $query->paginate(16),
+            'input' => $request->validated(),
+        ]);
     }
+    
+    
 
  
     /**
