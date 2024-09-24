@@ -19,14 +19,15 @@ class SearchPropertiesRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
-        return [
-            'price' => ['numeric','gte:0','nullable'],
-            'surface' => ['numeric','gte:0','nullable'],
-            'rooms' => ['numeric','gte:0','nullable'],
-            'title' => ['string','nullable'],
-
-        ];
-    }
+    public function rules(): array{
+            return [
+                'price' => ['nullable', 'integer', 'min:0'],
+                'surface' => ['nullable', 'integer', 'min:0'],
+                'rooms' => ['nullable', 'integer', 'min:0'],
+                'bedrooms' => ['nullable', 'integer', 'min:0'],  // Ajouter cette ligne
+                'title' => ['nullable', 'string'],
+            ];
+     }
+        
+    
 }

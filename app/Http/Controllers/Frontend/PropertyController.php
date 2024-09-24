@@ -24,20 +24,24 @@ class PropertyController extends Controller
         // Créer une requête de base pour les propriétés
         $query = Property::query()->orderBy('created_at', 'desc');
     
-        // Appliquer les filtres basés sur les paramètres validés du request
-        $query->when($request->validated('price'), function ($q, $price) {
+        $query->when($request->validated('price', false), function ($q, $price) {
             return $q->where('price', '<=', $price);
         });
-    
-        $query->when($request->validated('surface'), function ($q, $surface) {
+        
+        $query->when($request->validated('surface', false), function ($q, $surface) {
             return $q->where('surface', '>=', $surface);
         });
-    
+        
         $query->when($request->validated('rooms'), function ($q, $rooms) {
             return $q->where('rooms', '>=', $rooms);
         });
-    
-        $query->when($request->validated('title'), function ($q, $title) {
+        $query->when($request->validated('bedrooms'), function ($q, $bedrooms) {
+            return $q->where('bedrooms', '>=', $bedrooms);
+        });
+        
+        
+        
+        $query->when($request->validated('title', false), function ($q, $title) {
             return $q->where('title', 'like', "%$title%");
         });
     

@@ -19,34 +19,23 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-            @include('components.flash')
-
-            <!-- Page Content -->
+    <body class="bg-gray-100 text-gray-900">
+        <div class="container mx-auto px-4">
+            <header class="bg-green-500 text-white p-6 rounded-md mb-8">
+                <h1 class="text-2xl font-bold">Subvention agricole</h1>
+                <nav class="mt-4">
+                    <a href="{{ route('subventions.index') }}" class="nav-link text-white hover:underline mr-4">Liste des subventions</a>
+                    <a href="{{ route('formulaire') }}" class="nav-link text-white hover:underline">Delmande de subvention</a>
+                </nav>
+            </header>
+    
             <main>
-                {{ $slot }}
+                @yield('content')
             </main>
+    
+            <footer class="bg-gray-800 text-white p-4 text-center mt-8">
+                <p>&copy; 2024 Subventions Agricoles. Tous droits réservés.</p>
+            </footer>
         </div>
-
-        <script>
-            new TomSelect("select[multiple]",{plugins: {
-                remove_button: {
-                    title: "Supprimer"
-                }
-            
-            }
-            });
-        </script>
     </body>
 </html>

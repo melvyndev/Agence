@@ -17,7 +17,7 @@ use App\Http\Controllers\Frontend\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Front\SubventionController::class, 'create'])->name('formulaire');
 
 // Route vers la page des propriétés
 Route::get('/proprietes',[\App\Http\Controllers\Frontend\PropertyController::class, 'index'])->name('frontend.property.index');
@@ -56,5 +56,9 @@ Route::middleware('auth')->group(function () {
 
 
 });
+
+Route::get('/', [App\Http\Controllers\Front\SubventionController::class, 'create'])->name('formulaire');
+Route::post('/formulaire/store', [App\Http\Controllers\Front\SubventionController::class, 'store'])->name('subventions.store');
+Route::resource('subventions', App\Http\Controllers\SubventionController::class);
 
 require __DIR__.'/auth.php';
