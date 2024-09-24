@@ -20,13 +20,12 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="bg-gray-100 text-gray-900">
-
         <div class="container mx-auto px-4">
             <header class="bg-green-500 text-white p-6 rounded-md mb-8">
                 <h1 class="text-2xl font-bold">Subvention agricole</h1>
                 <nav class="mt-4">
                     <a href="{{ route('subventions.index') }}" class="nav-link text-white hover:underline mr-4">Liste des subventions</a>
-                    <a href="{{ route('formulaire') }}" class="nav-link text-white hover:underline">Demande de subvention</a>
+                    <a href="{{ route('formulaire') }}" class="nav-link text-white hover:underline">Delmande de subvention</a>
                 </nav>
             </header>
     
