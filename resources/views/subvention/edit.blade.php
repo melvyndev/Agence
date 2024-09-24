@@ -16,7 +16,6 @@
                                 @method('PATCH')
                                 @csrf
                                 @include('subvention.form')
-                                <button type="submit" class="mt-4 rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-500">Mettre à jour</button>
                             </form>
                         </div>
                     </div>
