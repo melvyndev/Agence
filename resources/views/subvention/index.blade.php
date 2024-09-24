@@ -65,7 +65,7 @@
                                 {!! $subventions->withQueryString()->links() !!}
                             </div>
                         @else
-                            <p class="mt-6 text-center text-gray-500">{{ __('No subventions found.') }}</p>
+                            <p class="mt-6 text-center text-gray-500">{{ __('Aucune subvention.') }}</p>
                         @endif
                     </div>
                 </div>
