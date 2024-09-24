@@ -41,7 +41,7 @@
         </div>
 
         <div>
-            <x-input-label for="montant_demande" :value="__('Montant Demande')" />
+            <x-input-label for="montant_demande" :value="__('Montant Demande (€)')" />
             <x-text-input id="montant_demande" name="montant_demande" type="number" class="mt-1 block w-full" :value="old('montant_demande', $subvention?->montant_demande)" placeholder="Montant Demande" />
             <x-input-error class="mt-2" :messages="$errors->get('montant_demande')" />
         </div>
